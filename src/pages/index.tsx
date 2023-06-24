@@ -1,6 +1,7 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
 import Image from "next/image";
+import { FormEvent } from "react";
 import {useForm} from 'react-hook-form'
 import { api } from "~/utils/api";
 
@@ -11,12 +12,16 @@ export default function Home() {
 
 
   const {data: sessionData} = useSession()
+
+  // const createFood = api.food.create.useMutation()
   
 
   const form = useForm()
 
   const {register, handleSubmit, formState} = form
   const {errors} = formState
+
+
 
 
   return (
@@ -39,9 +44,7 @@ export default function Home() {
               <section className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
 
 
-                <form onSubmit={handleSubmit((data) => {
-                  alert(JSON.stringify(data))
-                })} className="space-y-6">
+                <form  className="space-y-6">
 
                 <div>
               <label htmlFor="foodName" className="flex items-center gap-3  text-md font-semibold leading-6 text-gray-900">
