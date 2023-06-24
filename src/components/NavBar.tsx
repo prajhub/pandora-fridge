@@ -1,7 +1,13 @@
 import Link from "next/link"
 import ProfileMenu from "./ui/ProfileMenu"
 
+import { useSession, signIn, signOut } from "next-auth/react"
+
 export default function NavBar() {
+
+  const {data: sessionData} = useSession()
+
+
     return (
     <nav className="bg-[#ECECEC] border-gray-200 dark:bg-gray-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -21,8 +27,8 @@ export default function NavBar() {
             <li>
               <div className="flex items-center">
                 <div className="flex items-center flex-col">
-                <span className="text-md">Johhny Sins</span>
-              <span className="text-xs">Kitchen Fridge</span>
+                <span className="text-md hover:cursor-pointer">{sessionData?.user?.name}</span>
+              <span className="text-xs hover:cursor-pointer">Kitchen Fridge</span>
                 </div>
               
               <ProfileMenu/>

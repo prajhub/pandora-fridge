@@ -7,8 +7,11 @@ import { api } from "~/utils/api";
 
 
 export default function Home() {
-  const hello = api.example.hello.useQuery({ text: "from tRPC" });
+  // const hello = api.example.hello.useQuery({ text: "from tRPC" });
 
+
+  const {data: sessionData} = useSession()
+  
 
   const form = useForm()
 
@@ -26,7 +29,7 @@ export default function Home() {
       <main className="flex  min-h-screen flex-1 flex-col  px-6 py-12 lg:px-8  ">
         <div className=" max-w-2xl w-full mx-auto">
           <div className="flex items-center  flex-col mt-4 gap-4">
-              <h1 className="text-5xl font-bold">Hey there Buddy!</h1>
+              <h1 className="text-5xl font-bold">Hey there, {sessionData?.user.name ? sessionData?.user.name : "Buddy"}</h1>
               <div className="flex flex-row gap-2 items-center">
                 <Image src='/sunshine.png' alt="sunshine" width={30} height={30} />
               <span className="text-lg font-semibold tracking-wide">Its better to go shopping before this friday</span>
@@ -110,7 +113,7 @@ export default function Home() {
 
                 </form>
               </section>
-             <span className="text-sm text-gray-600 tracking-wide">We dont want more than one peice of the same food in our fridge</span>
+             <span className="text-xs text-gray-600 tracking-wide">We dont want more than one peice of the same food in our fridge</span>
               </div>
         </div>
       </main>
