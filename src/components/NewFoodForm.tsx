@@ -49,7 +49,7 @@ function Form() {
     const {data: sessionData} = useSession()
 
 
-    const foodSubmit: SubmitHandler<FoodFormData> = async (data) => {
+    const foodSubmit: SubmitHandler<FoodFormData> =  (data) => {
 
         const formattedData = {
             name: data.name,
@@ -57,9 +57,9 @@ function Form() {
         }
 
 
-    await  createFood.mutate(formattedData)
+   createFood.mutate(formattedData)
 
-        return void 0;
+        return undefined;
     }
 
 
