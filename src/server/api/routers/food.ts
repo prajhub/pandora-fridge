@@ -19,4 +19,8 @@ export const foodRouter = createTRPCRouter({
 
       return food;
     }),
+
+    getAll: publicProcedure.query(({ ctx }) => {
+      return ctx.prisma.food.findMany();
+    }),
 });

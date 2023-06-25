@@ -3,7 +3,8 @@ import {useSession} from "next-auth/react";
 import Image from "next/image";
 import toast, {Toaster} from 'react-hot-toast'
 
-import {useForm, SubmitHandler} from 'react-hook-form'
+import {useForm} from 'react-hook-form'
+import type { SubmitHandler } from 'react-hook-form';
 import {api} from "~/utils/api";
 
 
@@ -48,7 +49,7 @@ function Form() {
     const {data: sessionData} = useSession()
 
 
-    const foodSubmit: SubmitHandler<FoodFormData> = (data) => {
+    const foodSubmit: SubmitHandler<FoodFormData> = async (data) => {
 
         const formattedData = {
             name: data.name,
@@ -56,7 +57,9 @@ function Form() {
         }
 
 
-        createFood.mutate(formattedData)
+    await  createFood.mutate(formattedData)
+
+        return void 0;
     }
 
 
