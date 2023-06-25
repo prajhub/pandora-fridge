@@ -1,10 +1,7 @@
-import { signIn, signOut, useSession } from "next-auth/react";
-import Head from "next/head";
-import Image from "next/image";
 
-import {useForm} from 'react-hook-form'
+import Head from "next/head";
 import { NewFoodForm } from "~/components/NewFoodForm";
-import { api } from "~/utils/api";
+
 
 
 
@@ -12,15 +9,12 @@ export default function Home() {
   // const hello = api.example.hello.useQuery({ text: "from tRPC" });
 
 
-  const {data: sessionData} = useSession()
+
 
 
   
 
-  const form = useForm()
 
-  const {register, handleSubmit, formState} = form
-  const {errors} = formState
 
 
 

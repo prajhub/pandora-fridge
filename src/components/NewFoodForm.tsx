@@ -1,9 +1,9 @@
 import {useSession} from "next-auth/react";
-import Head from "next/head";
+
 import Image from "next/image";
 import toast, {Toaster} from 'react-hot-toast'
 
-import {useForm} from 'react-hook-form'
+import {useForm, SubmitHandler} from 'react-hook-form'
 import {api} from "~/utils/api";
 
 
@@ -25,9 +25,14 @@ export function NewFoodForm() {
 
 function Form() {
 
+    interface FoodFormData {
+        name: string;
+        expiresIn: string;
+      }
+
     const notify = () => toast.success('New food added in the fridge.');
 
-    const form = useForm()
+    const form = useForm<FoodFormData>()
 
     const {register, handleSubmit, formState} = form
     const {errors} = formState
@@ -43,11 +48,11 @@ function Form() {
     const {data: sessionData} = useSession()
 
 
-    const foodSubmit = (data : any) => {
+    const foodSubmit: SubmitHandler<FoodFormData> = (data) => {
 
         const formattedData = {
             name: data.name,
-            expiresIn: parseInt(data.expiresIn, 10)
+            expiresIn: parseInt(data.expiresIn, 10), 
         }
 
 

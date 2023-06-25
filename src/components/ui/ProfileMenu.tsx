@@ -1,7 +1,7 @@
 import { useSession, signIn, signOut } from "next-auth/react"
 
 import {Menu, Transition} from '@headlessui/react'
-import {Fragment} from 'react'
+import Image from "next/image"
 
 
 
@@ -21,7 +21,7 @@ export default function ProfileMenu() {
             <>
               <Menu.Button className="inline-flex items-center px-4 py-2 text-sm font-medium text-white  focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
                 {userImage && typeof userImage === 'string' && (
-                  <img src={userImage} alt="User Profile" className="w-14 h-14 rounded-full" />
+                  <Image src={userImage} alt="User Profile" className=" rounded-full" width={50} height={50} />
                 )}
               
               </Menu.Button>

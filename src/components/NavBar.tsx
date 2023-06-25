@@ -1,7 +1,7 @@
 import Link from "next/link"
 import ProfileMenu from "./ui/ProfileMenu"
 
-import { useSession, signIn, signOut } from "next-auth/react"
+import { useSession} from "next-auth/react"
 
 export default function NavBar() {
 
