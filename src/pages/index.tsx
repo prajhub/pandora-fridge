@@ -1,8 +1,9 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
 import Image from "next/image";
-import { FormEvent } from "react";
+
 import {useForm} from 'react-hook-form'
+import { NewFoodForm } from "~/components/NewFoodForm";
 import { api } from "~/utils/api";
 
 
@@ -13,7 +14,7 @@ export default function Home() {
 
   const {data: sessionData} = useSession()
 
-  // const createFood = api.food.create.useMutation()
+
   
 
   const form = useForm()
@@ -32,93 +33,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex  min-h-screen flex-1 flex-col  px-6 py-12 lg:px-8  ">
-        <div className=" max-w-2xl w-full mx-auto">
-          <div className="flex items-center  flex-col mt-4 gap-4">
-              <h1 className="text-5xl font-bold">Hey there, {sessionData?.user.name ? sessionData?.user.name : "Buddy"}</h1>
-              <div className="flex flex-row gap-2 items-center">
-                <Image src='/sunshine.png' alt="sunshine" width={30} height={30} />
-              <span className="text-lg font-semibold tracking-wide">Its better to go shopping before this friday</span>
-
-              </div>
-
-              <section className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-
-
-                <form  className="space-y-6">
-
-                <div>
-              <label htmlFor="foodName" className="flex items-center gap-3  text-md font-semibold leading-6 text-gray-900">
-                <Image src='/cabbage.png'  alt="sunshine" width={25} height={25} />
-                Food name
-              </label>
-              <div className="mt-2">
-                <input
-                  id="foodName"
-                 
-                  type="text"
-                  pattern="[A-Za-z]+"
-                 
-                  {...register("foodName", {
-                    required: "Inser food you want to store.",
-                    pattern: {
-                      value: /^[A-Za-z]+$/i,
-                      message: "Food name should only contain letters."
-                    }
-                  })}
-                  className="block w-full rounded-md border-0 py-2.5 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-                 {errors.foodName && (
-                          <span className="text-red-500 mt-2">
-                            {errors.foodName.message?.toString()}
-                          </span>
-                        )}
-              </div>
-            </div>
-
-
-            <div>
-              <label htmlFor="expireTime" className="flex items-center gap-3  text-md font-semibold leading-6 text-gray-900">
-                <Image src='/expiresin.png'  alt="sunshine" width={25} height={25} />
-                Expire in (Sec)
-              </label>
-              <div className="mt-2">
-                <input
-                  id="expireTime"
-                 
-                  type="text"
-                 placeholder="Eg: 500"
-                  {...register("expireTime", {
-                    required: "Enter a valid time.",
-                    pattern: {
-                      value: /^[0-9]+$/i,
-                      message: "Only numbers are allowed."
-                    }
-
-                  })}
-                  className="block w-full rounded-md border-0 py-2.5 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-                 {errors.expireTime && (
-                          <span className="text-red-500">
-                            {errors.expireTime.message?.toString()}
-                          </span>
-                        )}
-              </div>
-            </div>
-
-            
-              <button
-                type="submit"
-                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-3.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-               Add to fridge
-              </button>
-           
-
-                </form>
-              </section>
-             <span className="text-xs text-gray-600 tracking-wide">We dont want more than one peice of the same food in our fridge</span>
-              </div>
-        </div>
+       <NewFoodForm/>
       </main>
     </>
   );
