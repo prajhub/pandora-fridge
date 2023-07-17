@@ -17,7 +17,7 @@ export default function NavBar() {
         </Link>
        
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-          <ul className="font-medium flex items-center flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-[#ECECEC] md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-[#ECECEC] ">
+          <ul className="font-medium flex items-center flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg justify-center bg-[#ECECEC] md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-[#ECECEC] ">
             <li>
               <Link href="/" className="block py-2 pl-3 pr-4 text-white bg-[#293759] rounded md:bg-transparent md:text-[#293759] md:p-0 dark:text-white " aria-current="page">Home</Link>
             </li>
@@ -28,7 +28,7 @@ export default function NavBar() {
               <div className="flex items-center">
                 <div className="flex items-center flex-col">
                 <span className="text-md hover:cursor-pointer">{sessionData?.user?.name}</span>
-              <span className="text-xs hover:cursor-pointer">Kitchen Fridge</span>
+              <span className="text-xs hover:cursor-pointer">{sessionData?.user ? "Kitchen Fridge" : ""}</span>
                 </div>
               
               <ProfileMenu/>
